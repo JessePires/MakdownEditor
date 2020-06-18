@@ -1,0 +1,59 @@
+@import '~normalize.css';
+@import '~highlight.js/styles/dracula.css';
+
+* {
+  box-sizing: border-box;
+}
+
+.editor {
+  width: 100%;
+  height: 100%;
+}
+
+.header {
+  width: 100%;
+  height: 60px;
+  background-color: #333333;
+}
+
+.header .isSaving {
+  height: 20px;
+  padding-right: 20px;
+  color: #ffffff;
+  float: right;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 20px;
+  margin-bottom: 0px;
+}
+
+.header .remove {
+  text-align: center;
+  font-size: 20px;
+  float: left;
+  width: 100px;
+  height: 100%;
+  background-color: #a34848;
+  border: none;
+  color: #ffffff;
+  transition: all 0.25s ease-in-out;
+} 
+
+.header .remove:hover {
+  background-color: #410606;
+}
+
+.TextArea {
+  float: left;
+  height: 568px;
+  width: 50%;
+}
+
+.view {
+  padding: 15px;
+  padding-left: 20px;
+  float: right;
+  width: 50%;
+  height: 568px;
+  color: #ffffff;
+  background-color: #000000;
+}
