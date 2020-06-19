@@ -1,0 +1,10 @@
+.isSaving {
+  height: 20px;
+  padding-top: 15px;
+  padding-right: 20px;
+  color: #ffffff;
+  float: right;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 20px;
+  margin: 0;
+}

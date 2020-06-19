@@ -1,0 +1,26 @@
+.button {
+  text-align: center;
+  font-size: 20px;
+  float: left;
+  width: 130px;
+  height: 100%;
+  color: #ffffff;
+  transition: all 0.20s ease-in-out;
+  border: none;
+}
+
+.button.-success {
+  background-color: #177a16;
+} 
+
+.button.-success:hover {
+  background-color: #063602;
+}
+
+.button.-danger {
+  background-color: #a34848;
+} 
+
+.button.-danger:hover {
+  background-color: #410606;
+}

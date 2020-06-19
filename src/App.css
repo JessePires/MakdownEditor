@@ -1,0 +1,33 @@
+@import '~normalize.css';
+@import '~highlight.js/styles/dracula.css';
+
+* {
+  box-sizing: border-box;
+}
+
+.editor {
+  width: 100%;
+  height: 100%;
+}
+
+.header {
+  width: 100%;
+  height: 50px;
+  background-color: #333333;
+}
+
+.TextArea {
+  float: left;
+  height: 578px;
+  width: 50%;
+}
+
+.view {
+  padding: 15px;
+  padding-left: 20px;
+  float: right;
+  width: 50%;
+  height: 578px;
+  color: #ffffff;
+  background-color: #000000;
+}
