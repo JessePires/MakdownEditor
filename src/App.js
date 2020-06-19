@@ -42,6 +42,10 @@ class App extends Component {
       localStorage.setItem(this.state.id, this.state.value);
       this.setState({
         isSaving: false,
+        files: {
+          ...this.state.files,
+          [this.state.id]: this.state.value
+        }
       });
     };
 
