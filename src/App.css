@@ -16,18 +16,25 @@
   background-color: #333333;
 }
 
-.TextArea {
-  float: left;
-  height: 578px;
-  width: 50%;
-}
-
 .view {
   padding: 15px;
   padding-left: 20px;
   float: right;
-  width: 50%;
+  width: 42.5%;
   height: 578px;
   color: #ffffff;
   background-color: #000000;
+}
+
+.TextArea {
+  float: right;
+  height: 578px;
+  width: 42.5%;
+}
+
+.files-list-container {
+  margin-left: 0;
+  width: 15%;
+  height: 578px;
+  float: left;
 }

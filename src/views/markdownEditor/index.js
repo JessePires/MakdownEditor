@@ -1,10 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Header from './header';
+import Files from './files';
 
-const MarkdownEditor = ({ value, handleChange, getMarkup, textareaRef, ...props }) => (
+const MarkdownEditor = ({ value, handleChange, getMarkup, textareaRef, files, handleOpenFile, ...props }) => (
   <div className='editor'>
     <Header { ... props } />
+
+    <Files
+      files={ files }
+      handleOpenFile={ handleOpenFile }
+    />
+
+    <article
+      className='view'
+      dangerouslySetInnerHTML={ getMarkup() }
+    />
 
     <textarea 
       className='TextArea'
@@ -13,7 +24,6 @@ const MarkdownEditor = ({ value, handleChange, getMarkup, textareaRef, ...props 
       autoFocus
       ref={ textareaRef }
     />
-    <article className='view' dangerouslySetInnerHTML={ getMarkup() } />
   </div>
 );
 
