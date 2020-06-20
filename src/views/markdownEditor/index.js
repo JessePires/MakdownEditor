@@ -5,7 +5,10 @@ import Files from './files';
 
 const MarkdownEditor = ({ value, handleChange, getMarkup, textareaRef, files, handleOpenFile, ...props }) => (
   <div className='editor'>
-    <Header { ... props } />
+    <Header 
+      { ... props }
+      handleChange={ handleChange }
+    />
 
     <Files
       files={ files }
@@ -20,7 +23,7 @@ const MarkdownEditor = ({ value, handleChange, getMarkup, textareaRef, files, ha
     <textarea 
       className='TextArea'
       value={ value }
-      onChange={ handleChange }
+      onChange={ handleChange('value') }
       autoFocus
       ref={ textareaRef }
     />

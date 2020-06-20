@@ -8,12 +8,14 @@ const Files = ({ files, handleOpenFile }) => (
       { Object.keys(files).map((fileId) => (
         <li key={ fileId } >
           <button onClick={ handleOpenFile(fileId) }>
-            { fileId }
+            { files[fileId].title }
           </button>
         </li>
       ))}
     </ul>
   </div>
 );
+
+
 
 export default Files;

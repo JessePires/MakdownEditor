@@ -18,6 +18,7 @@ class App extends Component {
 
     this.clearState = () => ({
       id: v4(),
+      title: '',
       value: ''
     });
 
@@ -27,9 +28,9 @@ class App extends Component {
       files: {}
     };
 
-    this.handleChange = (e) => {
+    this.handleChange = (field) => (e) => {
       this.setState({
-        value: e.target.value,
+        [field]: e.target.value,
         isSaving: true,
       });
     };
@@ -39,14 +40,22 @@ class App extends Component {
     };
 
     this.handleSave = () => {
-      localStorage.setItem(this.state.id, this.state.value);
-      this.setState({
-        isSaving: false,
-        files: {
-          ...this.state.files,
-          [this.state.id]: this.state.value
-        }
-      });
+      if (this.state.isSaving) {
+        const newFile = {
+          title: this.state.title || 'Sem título',
+          content: this.state.value
+        };
+
+        localStorage.setItem(this.state.id, JSON.stringify(newFile));
+        
+        this.setState({
+          isSaving: false,
+          files: {
+            ...this.state.files,
+            [this.state.id]: newFile,
+          }
+        });
+      }
     };
 
     this.createNew = () => {
@@ -79,7 +88,8 @@ class App extends Component {
     this.handleOpenFile = (fileId) => () => {
       this.setState({
         id: fileId,
-        value: this.state.files[fileId]
+        title: this.state.files[fileId].title,
+        value: this.state.files[fileId].content
       });
     };
   }
@@ -87,19 +97,19 @@ class App extends Component {
   componentDidMount () {
     const files = Object.keys(localStorage);
     this.setState({
-      files: files.reduce((acc, fileId) => ({
+      files: files
+        .filter((id) => id
+            .match(/^\w{8}-\w{4}-\w{4}-\w{4}-\w{12}/)
+        ).reduce((acc, fileId) => ({
         ...acc,
-        [fileId]: localStorage.getItem(fileId)
+        [fileId]: JSON.parse(localStorage.getItem(fileId))
       }), {})
     });
   }
 
   componentDidUpdate () {
     clearInterval(this.timer);
-    
-    if(this.state.isSaving){
-      this.timer = setTimeout(this.handleSave, 400);
-    }
+    this.timer = setTimeout(this.handleSave, 400);
   }
 
   componentWillUnmount () {
@@ -118,6 +128,7 @@ class App extends Component {
         textareaRef={ this.textareaRef }
         files={ this.state.files }
         handleOpenFile={ this.handleOpenFile }
+        title={ this.state.title }
       />
     );
   }
