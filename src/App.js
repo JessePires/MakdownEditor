@@ -41,19 +41,19 @@ class App extends Component {
 
     this.handleSave = () => {
       if (this.state.isSaving) {
-        const newFile = {
-          title: this.state.title || 'Sem título',
-          content: this.state.value
+        const files = {
+          ...this.state.files,
+          [this.state.id]: {
+            title: this.state.title || 'Sem título',
+            content: this.state.value 
+          }
         };
 
-        localStorage.setItem(this.state.id, JSON.stringify(newFile));
+        localStorage.setItem('markdown-editor', JSON.stringify(files));
         
         this.setState({
           isSaving: false,
-          files: {
-            ...this.state.files,
-            [this.state.id]: newFile,
-          }
+          files
         });
       }
     };
@@ -63,9 +63,7 @@ class App extends Component {
       this.textarea.focus();
     };
 
-    this.handleRemove = () => {
-      localStorage.removeItem(this.state.id);
-      
+    this.handleRemove = () => {      
       let files = Object.keys(this.state.files).reduce((acc, fileId) => {
         return fileId === this.state.id ? acc : {
           ...acc,
@@ -73,6 +71,7 @@ class App extends Component {
         };
       }, {});
 
+      localStorage.setItem('markdown-editor', JSON.stringify(files));
       this.setState({ files });
       this.createNew();
     };
@@ -95,15 +94,10 @@ class App extends Component {
   }
 
   componentDidMount () {
-    const files = Object.keys(localStorage);
+    const files = JSON.parse(localStorage.getItem('markdown-editor'));
+
     this.setState({
-      files: files
-        .filter((id) => id
-            .match(/^\w{8}-\w{4}-\w{4}-\w{4}-\w{12}/)
-        ).reduce((acc, fileId) => ({
-        ...acc,
-        [fileId]: JSON.parse(localStorage.getItem(fileId))
-      }), {})
+      files
     });
   }
 
