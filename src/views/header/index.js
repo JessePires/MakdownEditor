@@ -3,32 +3,30 @@ import PropTypes from 'prop-types';
 import Button from '../../components/button';
 import SaveMessage from '../../components/saveMessage';
 
-const MarkdownEditorHeader = ({ title, isSaving, handleRemove, handleCreate, handleChange }) => (
-  <header className='header' >
-    <input 
-      type='text'
-      value={ title }
-      onChange={ handleChange('title') }
-      placeholder='insert title here'
-    />
+import { Header, Input } from './style.js';
 
+const MarkdownEditorHeader = ({ title, isSaving, handleRemove, handleCreate, handleChange }) => (
+  <Header>
     <Button 
       onClick={ handleCreate }
       kind='success'
-    >
-      Criar Novo
-    </Button>
+    />
+    
+    <Input
+      type='text'
+      value={ title }
+      onChange={ handleChange('title') }
+      placeholder='insira o título aqui'
+    />
     
     <Button
       onClick={ handleRemove } 
       kind='danger'
-    >
-      Remover
-    </Button>
+    />
     
     <SaveMessage isSaving={isSaving} /> 
 
-  </header>
+  </Header>
 );
 
 MarkdownEditorHeader.propTypes = {

@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Header from './header';
-import Files from './files';
+import Header from '../header';
+import Files from '../files';
+
+import { Textarea, View } from './style.js';
 
 const MarkdownEditor = ({ value, handleChange, getMarkup, textareaRef, files, handleOpenFile, ...props }) => (
   <div className='editor'>
@@ -15,17 +17,15 @@ const MarkdownEditor = ({ value, handleChange, getMarkup, textareaRef, files, ha
       handleOpenFile={ handleOpenFile }
     />
 
-    <article
-      className='view'
-      dangerouslySetInnerHTML={ getMarkup() }
-    />
-
-    <textarea 
-      className='TextArea'
+    <Textarea
       value={ value }
       onChange={ handleChange('value') }
       autoFocus
       ref={ textareaRef }
+    />
+
+    <View
+      dangerouslySetInnerHTML={ getMarkup() }
     />
   </div>
 );

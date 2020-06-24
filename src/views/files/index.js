@@ -1,10 +1,11 @@
 import React from 'react';
+import { FileListContainer, Title, StyledUl } from './style.js'
 
 const Files = ({ files, handleOpenFile }) => (
-  <div className='files-list-container' >
-    <h2>Files</h2>
+  <FileListContainer>
+    <Title>Arquivos</Title>
 
-    <ul>
+    <StyledUl>
       { Object.keys(files).map((fileId) => (
         <li key={ fileId } >
           <button onClick={ handleOpenFile(fileId) }>
@@ -12,8 +13,8 @@ const Files = ({ files, handleOpenFile }) => (
           </button>
         </li>
       ))}
-    </ul>
-  </div>
+    </StyledUl>
+  </FileListContainer>
 );
 
 

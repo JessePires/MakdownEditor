@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './saveMessage.css';
+import { Message } from './style.js';
 
 const SaveMessage = ({ isSaving }) => (
   isSaving !== null && (
-    <p className='isSaving'>
+    <Message>
       { isSaving ? 'Salvando...' : 'Salvo!' }
-    </p> 
+    </Message> 
   )
 );
 
