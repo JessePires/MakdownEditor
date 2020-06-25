@@ -1,19 +1,23 @@
 import React from 'react';
-import { FileListContainer, Title, StyledUl } from './style.js'
+import { FileListContainer, TitleDiv, Title, FileList, StyledUl, FileButton } from './style.js'
 
 const Files = ({ files, handleOpenFile }) => (
   <FileListContainer>
-    <Title>Arquivos</Title>
+    <TitleDiv>
+      <Title>Arquivos</Title>
+    </TitleDiv>
 
-    <StyledUl>
-      { Object.keys(files).map((fileId) => (
-        <li key={ fileId } >
-          <button onClick={ handleOpenFile(fileId) }>
-            { files[fileId].title }
-          </button>
-        </li>
-      ))}
-    </StyledUl>
+    <FileList>
+      <StyledUl>
+        { Object.keys(files).map((fileId) => (
+          <li key={ fileId } >
+            <FileButton onClick={ handleOpenFile(fileId) }>
+              { files[fileId].title }
+            </FileButton>
+          </li>
+        ))}
+      </StyledUl>
+    </FileList>
   </FileListContainer>
 );
 
